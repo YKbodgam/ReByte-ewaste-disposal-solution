@@ -6,6 +6,7 @@ import '../../../../common/custom_logo.dart';
 import '../../../../utils/palette.dart';
 import '../../controllers/signup_controller.dart';
 
+import '../widgets/signup_tab_five.dart';
 import '../widgets/signup_tab_three.dart';
 import '../widgets/signup_tab_one.dart';
 import '../widgets/signup_tab_two.dart';
@@ -61,6 +62,7 @@ class SignupScreen extends StatelessWidget {
                 SignupTabTwo(size: size),
                 SignupTabThree(size: size),
                 SignupTabFour(size: size),
+                SignupTabFive(size: size),
               ],
             ),
           ),

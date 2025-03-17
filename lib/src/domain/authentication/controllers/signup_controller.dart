@@ -12,8 +12,13 @@ class SignupController extends GetxController {
   // Reactive variables to hold the form values
 
   var loading = false.obs;
-  var currentPageIndex = 0.obs;
   var isPasswordVisible = false.obs;
+
+  var selectedIndex = 0.obs;
+  var currentPageIndex = 0.obs;
+
+  var address = ''.obs;
+  var choice = 'Individual'.obs;
 
   final pageController = PageController();
   final emailFormKey = GlobalKey<FormState>();
@@ -26,6 +31,11 @@ class SignupController extends GetxController {
 
   final passwordController = TextEditingController();
   final confirmController = TextEditingController();
+
+  void choiceSelected(context, index) {
+    selectedIndex.value = index;
+    choice.value = (index == 0 ? "Individual" : "Organization");
+  }
 
   Future<void> createAccount() async {
     loading.value = true;

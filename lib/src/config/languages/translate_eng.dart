@@ -9,6 +9,7 @@ var en = {
   "signUp": "Sign Up",
   "verify": "Verify",
   "resend": "Resend",
+  'select': "Select",
   "loginForgot": "Forgot Password ?",
 
   "onBoardingTitle1": "Welcome to Re-Byte\nReduce E-Waste, Earn Rewards",
@@ -59,6 +60,10 @@ var en = {
   "signUpSubtitle4":
       "Your account's security is our priority. Create a strong password to keep your data safe and ensure smooth access to your Rebyte profile anytime.",
 
+  "signUpTitle5": "Select Your Role",
+  "signUpSubtitle5":
+      "Please choose whether you are a individual or Organization to proceed with the registration process.",
+
   "forgotPasswordTitle1": "Recover Your Account !",
   "forgotPasswordSubtitle1":
       "Enter your registered email, and we’ll send a link to reset your password. Keep your account secure and continue your e-waste recycling journey.",
@@ -74,4 +79,7 @@ var en = {
   "forgotPasswordLabel1": "Please Create A New Password",
   "forgotPasswordLabel2": "Please Confirm Your New Password",
   "forgotPasswordLabel3": "Didn't Receive Email ? ",
+
+  "choiceIndividual": "Individual",
+  "choiceOrganization": "Organization",
 };
