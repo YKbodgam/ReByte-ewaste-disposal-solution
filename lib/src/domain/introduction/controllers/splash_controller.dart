@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:rebyte/src/domain/introduction/pages/views/onboarding_screen.dart';
 
 import '../../../services/token_functions/auth_service.dart';
 import '../../../services/token_functions/hive_service.dart';
+
 import '../../administration/pages/views/home_screen.dart';
 import '../pages/views/choose_language.dart';
+import '../pages/views/onboarding_screen.dart';
 import 'user_controller.dart';
 
 class SplashController extends GetxController

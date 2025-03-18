@@ -2,7 +2,7 @@ class UserModel {
   String userFullName;
   String userEmailID;
   String userPassword;
-  String userRole;
+  String role;
   String? userProfile;
 
   UserModel({
@@ -10,7 +10,7 @@ class UserModel {
     required this.userEmailID,
     required this.userPassword,
     this.userProfile,
-    this.userRole = 'user',
+    this.role = 'user',
   });
 
   Map<String, dynamic> toJson() {
@@ -18,7 +18,7 @@ class UserModel {
       'name': userFullName,
       'email': userEmailID,
       'password': userPassword,
-      'role': userRole, // "User" by default
+      'role': role, // "User" by default
     };
   }
 
@@ -27,7 +27,7 @@ class UserModel {
       userFullName: map['name'] ?? 'Unknown',
       userEmailID: map['email'] ?? 'Unknown',
       userPassword: map['User-Password'] ?? 'Unknown',
-      userRole: map['role'],
+      role: map['role'],
       userProfile: map['User-Profile'] ?? '',
     );
   }

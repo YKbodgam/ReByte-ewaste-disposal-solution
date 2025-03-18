@@ -81,7 +81,7 @@ class SignupController extends GetxController {
         userFullName: fullNameController.text.trim(), // Full name
         userEmailID: userEmailController.text.trim(), // Email
         userPassword: passwordController.text.trim(), // Password
-        userRole: 'user', // User role
+        role: 'user', // User role
       );
 
       var response = await AuthService.signupUser(user);
