@@ -28,15 +28,19 @@ class HomeScreen extends StatelessWidget {
           children: [
             CustomLogo(height: 90),
             SizedBox(height: size.height * 0.03),
-            BuildText(
-              text: userController.user.value.userFullName,
-              fontSize: FontSizes.regularTextSize(context),
-              textStyle: MerriweatherTextStyle.appTextStyleBoldItalic,
+            Obx(
+              () => BuildText(
+                text: userController.user.value.userFullName,
+                fontSize: FontSizes.regularTextSize(context),
+                textStyle: MerriweatherTextStyle.appTextStyleBoldItalic,
+              ),
             ),
-            BuildText(
-              text: userController.user.value.userEmailID,
-              fontSize: FontSizes.regularTextSize(context),
-              textStyle: MerriweatherTextStyle.appTextStyleBoldItalic,
+            Obx(
+              () => BuildText(
+                text: userController.user.value.userEmailID,
+                fontSize: FontSizes.regularTextSize(context),
+                textStyle: MerriweatherTextStyle.appTextStyleBoldItalic,
+              ),
             ),
             SizedBox(height: size.height * 0.03),
             Padding(

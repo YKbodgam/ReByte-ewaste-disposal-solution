@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:rebyte/src/domain/authentication/models/organisation_model.dart';
 
 import '../../../services/token_functions/auth_service.dart';
 import '../../introduction/pages/views/onboarding_final.dart';
@@ -27,8 +28,10 @@ class SignupController extends GetxController {
 
   final userEmailController = TextEditingController();
   final fullNameController = TextEditingController();
-  final otpController = TextEditingController();
+  final organizationNameController = TextEditingController();
+  final organizationAddressController = TextEditingController();
 
+  final otpController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmController = TextEditingController();
 
@@ -75,16 +78,33 @@ class SignupController extends GetxController {
   // Function to handle the form submission
   Future<void> submitForm() async {
     loading.value = true;
+    var response = false;
 
     try {
-      UserModel user = UserModel(
-        userFullName: fullNameController.text.trim(), // Full name
-        userEmailID: userEmailController.text.trim(), // Email
-        userPassword: passwordController.text.trim(), // Password
-        role: 'user', // User role
-      );
+      if (selectedIndex.value == 0) {
+        UserModel user = UserModel(
+          userFullName: fullNameController.text.trim(), // Full name
+          userEmailID: userEmailController.text.trim(), // Email
+          userPassword: passwordController.text.trim(), // Password
+          role: 'user', // User role
+        );
 
-      var response = await AuthService.signupUser(user);
+        response = await AuthService.signupUser(user);
+      }
+      //
+      else {
+        OrganizationModel organization = OrganizationModel(
+          organizationName:
+              organizationNameController.text.trim(), // Organization name
+          organizationAddress:
+              organizationAddressController.text.trim(), // Organization address
+          userFullName: fullNameController.text.trim(), // Full name
+          userEmailID: userEmailController.text.trim(), // Email
+          userPassword: passwordController.text.trim(), // Password
+        );
+
+        response = await AuthService.signupUser(organization);
+      }
 
       if (response) {
         SnackWidget.showSnackbar(Get.context!, 'Otp send successfully');

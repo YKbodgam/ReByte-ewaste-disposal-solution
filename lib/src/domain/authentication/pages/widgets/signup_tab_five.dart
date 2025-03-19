@@ -1,13 +1,15 @@
 import 'package:get/get.dart';
+import 'package:pinput/pinput.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rebyte/src/utils/text_styles.dart';
 
-import '../../../../common/custom_text.dart';
 import '../../../../common/regular_button.dart';
+import '../../../../common/custom_text.dart';
+
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
-import 'choose_container.dart';
+import '../../../../utils/text_styles.dart';
+
 import '../../controllers/signup_controller.dart';
 
 class SignupTabFive extends StatelessWidget {
@@ -17,20 +19,20 @@ class SignupTabFive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final signupController = Get.find<SignupController>();
+    final SignupController signupController = Get.find<SignupController>();
 
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.04,
           vertical: size.height * 0.01,
+          horizontal: size.width * 0.04,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Center(
               child: SvgPicture.asset(
-                'assets/images/authentication/img_signup_5.svg',
+                'assets/images/authentication/img_signup_4.svg',
                 height: size.height * 0.35,
               ),
             ),
@@ -41,74 +43,83 @@ class SignupTabFive extends StatelessWidget {
                 horizontal: size.width * 0.01,
               ),
               child: BuildText(
-                text: "signUpTitle5".tr,
+                text: 'signUpTitle2'.tr,
                 maxLines: 3,
                 fontSize: FontSizes.largeTextSize(context),
-                textStyle: MerriweatherTextStyle.appTextStyleBold,
+                textStyle: LoraTextStyle.appTextStyleBold,
                 color: Palette.kTextPrimaryColor,
-                alignment: TextAlign.center,
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
               child: BuildText(
-                maxLines: 3,
-                text: "signUpSubtitle5".tr,
+                maxLines: 10,
+                text: 'signUpSubtitle2'.tr,
                 fontSize: FontSizes.mediumTextSize(context),
-                textStyle: LoraTextStyle.appTextStyleMedium,
+                textStyle: SpaceTextStyle.appTextStyleMedium,
                 color: Palette.kTextSecondaryColor,
                 alignment: TextAlign.justify,
               ),
             ),
             SizedBox(height: size.height * 0.02),
-            Row(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: size.height * 0.01,
-                      horizontal: size.width * 0.02,
-                    ),
-                    child: GestureDetector(
-                      onTap: () => signupController.choiceSelected(context, 0),
-                      child: Obx(() {
-                        return ChooseContainer(
-                          isSelected: signupController.selectedIndex.value == 0,
-                          index: 0,
-                        );
-                      }),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.01,
+                vertical: size.height * 0.02,
+              ),
+              child: Pinput(
+                length: 4,
+                controller: signupController.otpController,
+                showCursor: true,
+                defaultPinTheme: PinTheme(
+                  width: 55,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: Palette.kPrimaryLightColor.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Palette.kBorderPrimaryColor,
+                      width: 1.0,
                     ),
                   ),
+                  textStyle: LoraTextStyle.appTextStyleBold,
                 ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: size.height * 0.01,
-                      horizontal: size.width * 0.02,
-                    ),
-                    child: GestureDetector(
-                      onTap: () => signupController.choiceSelected(context, 1),
-                      child: Obx(() {
-                        return ChooseContainer(
-                          isSelected: signupController.selectedIndex.value == 1,
-                          index: 1,
-                        );
-                      }),
-                    ),
+                onCompleted: (value) => signupController.createAccount(),
+              ),
+            ),
+            Obx(
+              () => Padding(
+                padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
+                child: RoundedButton(
+                  text: 'continueButton'.tr,
+                  loading: signupController.loading.value,
+                  onPressed: () => signupController.createAccount(),
+                ),
+              ),
+            ),
+            SizedBox(height: size.height * 0.01),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                BuildText(
+                  text: 'forgotPasswordLabel3'.tr,
+                  fontSize: FontSizes.mediumTextSize(context),
+                  textStyle: SpaceTextStyle.appTextStyleMedium,
+                  color: Palette.kTextSecondaryColor,
+                ),
+                SizedBox(width: size.width * 0.02),
+                GestureDetector(
+                  onTap: () => signupController.resendOtp(),
+                  child: BuildText(
+                    text: "resend".tr,
+                    fontSize: FontSizes.mediumTextSize(context),
+                    textStyle: LoraTextStyle.appTextStyleBold,
+                    color: Palette.kSecondaryButtonColor,
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
-              child: RoundedButton(
-                text: "select".tr,
-                onPressed:
-                    () => signupController.nextPage(
-                      signupController.currentPageIndex.value + 1,
-                    ),
-              ),
-            ),
+            SizedBox(height: size.height * 0.01),
           ],
         ),
       ),

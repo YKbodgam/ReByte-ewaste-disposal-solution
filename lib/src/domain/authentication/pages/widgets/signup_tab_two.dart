@@ -25,16 +25,16 @@ class SignupTabTwo extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          vertical: size.height * 0.01,
           horizontal: size.width * 0.04,
+          vertical: size.height * 0.01,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Center(
               child: SvgPicture.asset(
-                'assets/images/authentication/img_signup_3.svg',
-                height: size.height * 0.35,
+                'assets/images/authentication/img_signup_1.svg',
+                width: size.width * 0.8,
               ),
             ),
             SizedBox(height: size.height * 0.01),
@@ -44,7 +44,7 @@ class SignupTabTwo extends StatelessWidget {
                 horizontal: size.width * 0.01,
               ),
               child: BuildText(
-                text: 'signUpTitle4'.tr,
+                text: 'signUpTitle3'.tr,
                 maxLines: 3,
                 fontSize: FontSizes.largeTextSize(context),
                 textStyle: LoraTextStyle.appTextStyleBold,
@@ -54,7 +54,8 @@ class SignupTabTwo extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
               child: BuildText(
-                text: 'signUpSubtitle4'.tr,
+                maxLines: 5,
+                text: 'signUpSubtitle3'.tr,
                 fontSize: FontSizes.mediumTextSize(context),
                 textStyle: SpaceTextStyle.appTextStyleMedium,
                 color: Palette.kTextSecondaryColor,
@@ -63,53 +64,60 @@ class SignupTabTwo extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.02),
             Form(
-              key: signupController.passwordFormKey,
+              key: signupController.detailsFormKey,
               child: Column(
                 children: [
-                  Obx(
-                    () => CustomTextField(
-                      borderRadius: 10,
-                      keyboardType: TextInputType.visiblePassword,
-                      controller: signupController.passwordController,
-                      prefixIcon: Icon(Iconsax.password_check),
-                      obscureText:
-                          signupController.isPasswordVisible.value
-                              ? false
-                              : true,
-                      focusedBorderColor: Palette.kBorderPrimaryColor,
-                      hintText: 'forgotPasswordLabel1'.tr,
-                      labelText: 'loginInputLabel2'.tr,
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          signupController.isPasswordVisible.value
-                              ? Iconsax.eye
-                              : Iconsax.eye_slash,
-                          color: Palette.kPrimaryDarkAccent,
-                        ),
-                        onPressed: () {
-                          signupController.togglePasswordVisibility();
-                        },
-                      ),
-                      validator:
-                          (value) =>
-                              signupController.validatePassword(context, value),
-                    ),
-                  ),
                   CustomTextField(
                     borderRadius: 10,
-                    obscureText: true,
-                    keyboardType: TextInputType.visiblePassword,
-                    controller: signupController.confirmController,
-                    prefixIcon: Icon(Iconsax.password_check),
+                    keyboardType: TextInputType.name,
+                    controller: signupController.fullNameController,
+                    prefixIcon: Icon(Iconsax.user_edit),
                     focusedBorderColor: Palette.kBorderPrimaryColor,
-                    hintText: 'forgotPasswordLabel2'.tr,
-                    labelText: 'loginInputLabel2'.tr,
+                    hintText: 'Please enter your full name',
+                    labelText: 'Full Name',
                     validator:
-                        (value) => signupController.validateConfirmPassword(
-                          context,
-                          value,
-                        ),
+                        (value) => signupController.validateFullName(value),
                   ),
+                  Visibility(
+                    visible: signupController.selectedIndex.value == 1,
+                    child: CustomTextField(
+                      borderRadius: 10,
+                      keyboardType: TextInputType.name,
+                      controller: signupController.organizationNameController,
+                      prefixIcon: Icon(Iconsax.user_edit),
+                      focusedBorderColor: Palette.kBorderPrimaryColor,
+                      hintText: 'Please enter your organization name',
+                      labelText: 'Organization Name',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Organization Name cannot be empty";
+                        }
+
+                        return null;
+                      },
+                    ),
+                  ),
+                  Visibility(
+                    visible: signupController.selectedIndex.value == 1,
+                    child: CustomTextField(
+                      borderRadius: 10,
+                      keyboardType: TextInputType.name,
+                      controller:
+                          signupController.organizationAddressController,
+                      prefixIcon: Icon(Iconsax.user_edit),
+                      focusedBorderColor: Palette.kBorderPrimaryColor,
+                      hintText: 'Please enter your organization address',
+                      labelText: 'Address',
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Organization Address cannot be empty";
+                        }
+
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(height: size.height * 0.01),
                 ],
               ),
             ),
@@ -119,7 +127,7 @@ class SignupTabTwo extends StatelessWidget {
                 text: 'continueButton'.tr,
                 suffixIcon: Iconsax.arrow_right_2,
                 onPressed: () {
-                  if (signupController.passwordFormKey.currentState!
+                  if (signupController.detailsFormKey.currentState!
                       .validate()) {
                     signupController.nextPage(
                       signupController.currentPageIndex.value + 1,

@@ -26,9 +26,9 @@ class UserModel {
     return UserModel(
       userFullName: map['name'] ?? 'Unknown',
       userEmailID: map['email'] ?? 'Unknown',
-      userPassword: map['User-Password'] ?? 'Unknown',
+      userPassword: map['password'] ?? 'Unknown',
       role: map['role'],
-      userProfile: map['User-Profile'] ?? '',
+      userProfile: map['profile'] ?? '',
     );
   }
 }

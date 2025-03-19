@@ -1,16 +1,14 @@
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rebyte/src/utils/text_styles.dart';
 
 import '../../../../common/custom_text.dart';
 import '../../../../common/regular_button.dart';
-import '../../../../common/custom_text_field.dart';
-
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
-import '../../../../utils/text_styles.dart';
 
+import 'choose_container.dart';
 import '../../controllers/signup_controller.dart';
 
 class SignupTabOne extends StatelessWidget {
@@ -20,7 +18,7 @@ class SignupTabOne extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SignupController signupController = Get.find<SignupController>();
+    final signupController = Get.find<SignupController>();
 
     return SingleChildScrollView(
       child: Padding(
@@ -33,8 +31,8 @@ class SignupTabOne extends StatelessWidget {
           children: [
             Center(
               child: SvgPicture.asset(
-                'assets/images/authentication/img_signup_1.svg',
-                width: size.width * 0.8,
+                'assets/images/authentication/img_signup_5.svg',
+                height: size.height * 0.3,
               ),
             ),
             SizedBox(height: size.height * 0.01),
@@ -44,57 +42,72 @@ class SignupTabOne extends StatelessWidget {
                 horizontal: size.width * 0.01,
               ),
               child: BuildText(
-                text: 'signUpTitle3'.tr,
+                text: "signUpTitle5".tr,
                 maxLines: 3,
                 fontSize: FontSizes.largeTextSize(context),
-                textStyle: LoraTextStyle.appTextStyleBold,
+                textStyle: MerriweatherTextStyle.appTextStyleBold,
                 color: Palette.kTextPrimaryColor,
+                alignment: TextAlign.center,
               ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
               child: BuildText(
-                maxLines: 5,
-                text: 'signUpSubtitle3'.tr,
+                maxLines: 3,
+                text: "signUpSubtitle5".tr,
                 fontSize: FontSizes.mediumTextSize(context),
-                textStyle: SpaceTextStyle.appTextStyleMedium,
+                textStyle: LoraTextStyle.appTextStyleMedium,
                 color: Palette.kTextSecondaryColor,
                 alignment: TextAlign.justify,
               ),
             ),
             SizedBox(height: size.height * 0.02),
-            Form(
-              key: signupController.detailsFormKey,
-              child: Column(
-                children: [
-                  CustomTextField(
-                    borderRadius: 10,
-                    keyboardType: TextInputType.name,
-                    controller: signupController.fullNameController,
-                    prefixIcon: Icon(Iconsax.user_edit),
-                    focusedBorderColor: Palette.kBorderPrimaryColor,
-                    hintText: 'Please enter your full name',
-                    labelText: 'Full Name',
-                    validator:
-                        (value) => signupController.validateFullName(value),
+            Row(
+              children: [
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: size.height * 0.01,
+                      horizontal: size.width * 0.02,
+                    ),
+                    child: GestureDetector(
+                      onTap: () => signupController.choiceSelected(context, 0),
+                      child: Obx(() {
+                        return ChooseContainer(
+                          isSelected: signupController.selectedIndex.value == 0,
+                          index: 0,
+                        );
+                      }),
+                    ),
                   ),
-                  SizedBox(height: size.height * 0.01),
-                ],
-              ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: size.height * 0.01,
+                      horizontal: size.width * 0.02,
+                    ),
+                    child: GestureDetector(
+                      onTap: () => signupController.choiceSelected(context, 1),
+                      child: Obx(() {
+                        return ChooseContainer(
+                          isSelected: signupController.selectedIndex.value == 1,
+                          index: 1,
+                        );
+                      }),
+                    ),
+                  ),
+                ),
+              ],
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
               child: RoundedButton(
-                text: 'continueButton'.tr,
-                suffixIcon: Iconsax.arrow_right_2,
-                onPressed: () {
-                  if (signupController.detailsFormKey.currentState!
-                      .validate()) {
-                    signupController.nextPage(
+                text: "select".tr,
+                onPressed:
+                    () => signupController.nextPage(
                       signupController.currentPageIndex.value + 1,
-                    );
-                  }
-                },
+                    ),
               ),
             ),
           ],

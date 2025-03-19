@@ -28,12 +28,12 @@ class OrganizationModel {
 
   factory OrganizationModel.fromMap(Map<String, dynamic> map) {
     return OrganizationModel(
-      userFullName: map['name'] as String,
-      organizationName: map['organizationName'] as String,
-      userEmailID: map['email'] as String,
-      userPassword: map['password'] as String,
-      role: map['role'] as String,
-      organizationAddress: map['organizationAddress'] as String,
+      userFullName: map['name'] ?? '',
+      organizationName: map['organizationName'] ?? '',
+      userEmailID: map['email'] ?? '',
+      userPassword: map['password'] ?? '',
+      role: map['role'] ?? '',
+      organizationAddress: map['organizationAddress'] ?? '',
     );
   }
 }

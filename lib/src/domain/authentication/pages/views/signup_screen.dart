@@ -6,11 +6,11 @@ import '../../../../common/custom_logo.dart';
 import '../../../../utils/palette.dart';
 import '../../controllers/signup_controller.dart';
 
-import '../widgets/signup_tab_five.dart';
-import '../widgets/signup_tab_three.dart';
 import '../widgets/signup_tab_one.dart';
 import '../widgets/signup_tab_two.dart';
+import '../widgets/signup_tab_five.dart';
 import '../widgets/signup_tab_four.dart';
+import '../widgets/signup_tab_three.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({super.key});
@@ -38,12 +38,12 @@ class SignupScreen extends StatelessWidget {
               children: [
                 SmoothPageIndicator(
                   controller: signupController.pageController,
-                  count: 4,
+                  count: 5,
                   effect: WormEffect(
                     activeDotColor: Palette.kBorderPrimaryColor,
                     dotColor: Palette.kPrimaryLightColor,
                     dotHeight: 6,
-                    dotWidth: size.width * 0.2,
+                    dotWidth: size.width * 0.15,
                     spacing: size.width * 0.03,
                     strokeWidth: 1.5,
                   ),

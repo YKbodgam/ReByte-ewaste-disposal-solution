@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../../common/custom_text.dart';
 import '../../../../common/regular_button.dart';
 import '../../../../common/custom_text_field.dart';
-import '../../../../common/custom_text.dart';
 
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
@@ -25,17 +25,16 @@ class SignupTabThree extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: size.width * 0.04,
           vertical: size.height * 0.01,
+          horizontal: size.width * 0.04,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
+          children: <Widget>[
             Center(
               child: SvgPicture.asset(
-                'assets/images/authentication/img_signup_2.svg',
-                width: size.width,
+                'assets/images/authentication/img_signup_3.svg',
+                height: size.height * 0.35,
               ),
             ),
             SizedBox(height: size.height * 0.01),
@@ -45,7 +44,7 @@ class SignupTabThree extends StatelessWidget {
                 horizontal: size.width * 0.01,
               ),
               child: BuildText(
-                text: 'signUpTitle1'.tr,
+                text: 'signUpTitle4'.tr,
                 maxLines: 3,
                 fontSize: FontSizes.largeTextSize(context),
                 textStyle: LoraTextStyle.appTextStyleBold,
@@ -55,8 +54,7 @@ class SignupTabThree extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
               child: BuildText(
-                maxLines: 10,
-                text: 'signUpSubtitle1'.tr,
+                text: 'signUpSubtitle4'.tr,
                 fontSize: FontSizes.mediumTextSize(context),
                 textStyle: SpaceTextStyle.appTextStyleMedium,
                 color: Palette.kTextSecondaryColor,
@@ -65,38 +63,69 @@ class SignupTabThree extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.02),
             Form(
-              key: signupController.emailFormKey,
+              key: signupController.passwordFormKey,
               child: Column(
                 children: [
-                  CustomTextField(
-                    borderRadius: 10,
-                    keyboardType: TextInputType.emailAddress,
-                    controller: signupController.userEmailController,
-                    prefixIcon: Icon(Iconsax.direct),
-                    focusedBorderColor: Palette.kBorderPrimaryColor,
-                    labelText: "loginInputLabel1".tr,
-                    hintText: "loginInput1".tr,
-                    validator: (value) => signupController.validateEmail(value),
-                  ),
                   Obx(
-                    () => Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: size.height * 0.01,
-                      ),
-                      child: RoundedButton(
-                        text: 'verify'.tr,
-                        loading: signupController.loading.value,
+                    () => CustomTextField(
+                      borderRadius: 10,
+                      keyboardType: TextInputType.visiblePassword,
+                      controller: signupController.passwordController,
+                      prefixIcon: Icon(Iconsax.password_check),
+                      obscureText:
+                          signupController.isPasswordVisible.value
+                              ? false
+                              : true,
+                      focusedBorderColor: Palette.kBorderPrimaryColor,
+                      hintText: 'forgotPasswordLabel1'.tr,
+                      labelText: 'loginInputLabel2'.tr,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          signupController.isPasswordVisible.value
+                              ? Iconsax.eye
+                              : Iconsax.eye_slash,
+                          color: Palette.kPrimaryDarkAccent,
+                        ),
                         onPressed: () {
-                          if (signupController.emailFormKey.currentState!
-                              .validate()) {
-                            signupController.submitForm();
-                          }
+                          signupController.togglePasswordVisibility();
                         },
                       ),
+                      validator:
+                          (value) =>
+                              signupController.validatePassword(context, value),
                     ),
                   ),
-                  SizedBox(height: size.height * 0.02),
+                  CustomTextField(
+                    borderRadius: 10,
+                    obscureText: true,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: signupController.confirmController,
+                    prefixIcon: Icon(Iconsax.password_check),
+                    focusedBorderColor: Palette.kBorderPrimaryColor,
+                    hintText: 'forgotPasswordLabel2'.tr,
+                    labelText: 'loginInputLabel2'.tr,
+                    validator:
+                        (value) => signupController.validateConfirmPassword(
+                          context,
+                          value,
+                        ),
+                  ),
                 ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: size.height * 0.01),
+              child: RoundedButton(
+                text: 'continueButton'.tr,
+                suffixIcon: Iconsax.arrow_right_2,
+                onPressed: () {
+                  if (signupController.passwordFormKey.currentState!
+                      .validate()) {
+                    signupController.nextPage(
+                      signupController.currentPageIndex.value + 1,
+                    );
+                  }
+                },
               ),
             ),
           ],

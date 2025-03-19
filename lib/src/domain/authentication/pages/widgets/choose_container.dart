@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:rebyte/src/utils/text_styles.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../common/custom_text.dart';
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
+import '../../../../utils/text_styles.dart';
 
 class ChooseContainer extends StatelessWidget {
   final int index;
@@ -77,11 +76,12 @@ class ChooseContainer extends StatelessWidget {
                 ),
               )
               : Center(
-                child: SvgPicture.asset(
+                child: Image.asset(
                   'assets/images/authentication/img_signup_2.png',
                   height: size.height * 0.1,
                 ),
               ),
+          SizedBox(height: size.height * 0.01),
           Center(
             child: BuildText(
               text: choices[index],
