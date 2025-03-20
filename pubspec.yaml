@@ -43,6 +43,8 @@ dependencies:
   iconsax: ^0.0.8
   flutter_native_splash: ^2.4.5
   pinput: ^5.0.1
+  carousel_slider: ^5.0.0
+  google_maps_flutter: ^2.11.0
 
 dev_dependencies:
   flutter_test:
