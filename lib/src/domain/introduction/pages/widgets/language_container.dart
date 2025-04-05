@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../common/custom_text.dart';
+import '../../../../common/widgets/custom_text.dart';
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
 import '../../../../utils/text_styles.dart';

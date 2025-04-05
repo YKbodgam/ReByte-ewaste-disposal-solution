@@ -6,9 +6,9 @@ import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
 import '../../../../utils/text_styles.dart';
 
-import '../../../../common/custom_text.dart';
-import '../../../../common/regular_button.dart';
-import '../../../../common/custom_text_field.dart';
+import '../../../../common/widgets/custom_text.dart';
+import '../../../../common/widgets/regular_button.dart';
+import '../../../../common/widgets/custom_text_field.dart';
 
 import '../widgets/language_container.dart';
 import '../../models/language_data.dart';
@@ -17,7 +17,9 @@ import '../../controllers/language_controller.dart';
 import 'onboarding_screen.dart';
 
 class SelectLanguage extends StatelessWidget {
-  const SelectLanguage({super.key});
+  final bool isLoggedIn;
+
+  const SelectLanguage({super.key, this.isLoggedIn = false});
 
   @override
   Widget build(BuildContext context) {
@@ -99,12 +101,17 @@ class SelectLanguage extends StatelessWidget {
 
                   RoundedButton(
                     text: "continueButton".tr,
-                    onPressed:
-                        () => Get.offAll(
+                    onPressed: () {
+                      if (isLoggedIn) {
+                        Get.back();
+                      } else {
+                        Get.offAll(
                           () => OnBoardScreen(),
                           transition: Transition.rightToLeft,
                           duration: Duration(milliseconds: 100),
-                        ),
+                        );
+                      }
+                    },
                     suffixIcon: Iconsax.arrow_right_2,
                   ),
                 ],

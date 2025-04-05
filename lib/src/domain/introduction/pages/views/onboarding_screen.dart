@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../common/custom_logo.dart';
+import '../../../../common/widgets/custom_logo.dart';
 import '../../controllers/onboard_controller.dart';
 
 import '../widgets/onboarding_back.dart';

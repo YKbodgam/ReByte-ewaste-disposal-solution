@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'custom_text.dart';
-import '../utils/palette.dart';
-import '../utils/text_size.dart';
-import '../utils/text_styles.dart';
+import '../../utils/palette.dart';
+import '../../utils/text_size.dart';
+import '../../utils/text_styles.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;

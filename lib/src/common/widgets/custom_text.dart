@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/palette.dart';
+import '../../utils/palette.dart';
 
 class BuildText extends StatelessWidget {
   final String text;

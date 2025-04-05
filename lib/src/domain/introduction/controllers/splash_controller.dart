@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import '../../../services/token_functions/auth_service.dart';
 import '../../../services/token_functions/hive_service.dart';
 
-import '../../administration/pages/views/home_screen.dart';
+import 'user_controller.dart';
 import '../pages/views/choose_language.dart';
 import '../pages/views/onboarding_screen.dart';
-import 'user_controller.dart';
+import '../../administration/pages/views/home_page.dart';
 
 class SplashController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -76,7 +76,7 @@ class SplashController extends GetxController
     if (AuthService.isLoggedIn()) {
       await userController.fetchUserData();
 
-      Timer(const Duration(seconds: 2), () => Get.off(() => HomeScreen()));
+      Timer(const Duration(seconds: 2), () => Get.off(() => HomePage()));
     }
     //
     else if (_hiveService.getLocale() != null) {

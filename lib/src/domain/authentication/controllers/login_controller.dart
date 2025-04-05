@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../config/snackbar.dart';
 import '../../../services/token_functions/auth_service.dart';
 
-import '../../administration/pages/views/home_screen.dart';
+import '../../administration/pages/views/home_page.dart';
 import '../../introduction/controllers/user_controller.dart';
 
 class LoginController extends GetxController {
@@ -37,7 +37,7 @@ class LoginController extends GetxController {
           // Navigate to the home screen
           SnackWidget.showSnackbar(Get.context!, 'Login Successful !');
 
-          Get.offAll(() => HomeScreen());
+          Get.offAll(() => HomePage());
         }
       }
       //

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../utils/palette.dart';
-import '../utils/text_size.dart';
-import '../utils/text_styles.dart';
+import '../../utils/palette.dart';
+import '../../utils/text_size.dart';
+import '../../utils/text_styles.dart';
 
 class CustomTextField extends StatefulWidget {
   //

@@ -3,10 +3,10 @@ import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../common/custom_logo.dart';
-import '../../../../common/custom_text.dart';
-import '../../../../common/regular_button.dart';
-import '../../../../common/custom_text_field.dart';
+import '../../../../common/widgets/custom_logo.dart';
+import '../../../../common/widgets/custom_text.dart';
+import '../../../../common/widgets/regular_button.dart';
+import '../../../../common/widgets/custom_text_field.dart';
 
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
