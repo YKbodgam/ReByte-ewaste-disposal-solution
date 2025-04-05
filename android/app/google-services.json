@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "497752419605",
+    "project_id": "rebyte-451705",
+    "storage_bucket": "rebyte-451705.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497752419605:android:f81c28db6800a45935cd1c",
+        "android_client_info": {
+          "package_name": "com.junkgenix.rebyte"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVin0NmZr6Tpqc0fSAAhlXf-vMZXyxzas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

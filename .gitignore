@@ -159,7 +159,7 @@ app.*.symbols
 .gclient_previous_custom_vars
 .gclient_previous_sync_commits
 
-**/android/app/google-services.json
-**/lib/firebase_options.dart
+# **/android/app/google-services.json
+# **/lib/firebase_options.dart
 # **/lib/src/services/
-firebase.json
+# firebase.json
