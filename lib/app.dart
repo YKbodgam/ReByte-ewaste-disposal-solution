@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -15,26 +16,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(UserController(), permanent: true);
 
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Re-Byte",
-      themeMode: ThemeMode.system,
-      translations: LocaleString(),
-      locale: Locale(locale),
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
-          surfaceTintColor: Colors.white,
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Re-Byte",
+        themeMode: ThemeMode.system,
+        translations: LocaleString(),
+        locale: Locale(locale),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white,
+            surfaceTintColor: Colors.white,
+          ),
+          useMaterial3: true,
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Palette.kSecondaryDarkColor,
+            selectionColor: Palette.kSecondaryDarkColor.withAlpha(100),
+            selectionHandleColor: Palette.kSecondaryDarkColor,
+          ),
         ),
-        useMaterial3: true,
-        textSelectionTheme: TextSelectionThemeData(
-          cursorColor: Palette.kSecondaryDarkColor,
-          selectionColor: Palette.kSecondaryDarkColor.withAlpha(100),
-          selectionHandleColor: Palette.kSecondaryDarkColor,
-        ),
+        home: SplashScreen(),
       ),
-      home: SplashScreen(),
     );
   }
 }

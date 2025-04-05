@@ -1,4 +1,4 @@
-package com.junkgenix.rebyte
+package com.example.rebyte
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -3,8 +3,8 @@ import 'package:pinput/pinput.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../common/regular_button.dart';
-import '../../../../common/custom_text.dart';
+import '../../../../common/widget/regular_button.dart';
+import '../../../../common/widget/custom_text.dart';
 
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';

@@ -1,7 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'app.dart';
@@ -24,7 +25,6 @@ void main() async {
   SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
   ]);
-
   runApp(MyApp(locale: locale));
 
   FlutterNativeSplash.remove();

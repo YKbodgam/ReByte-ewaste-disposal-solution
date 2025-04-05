@@ -3,7 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/palette.dart';
-import '../../../../common/regular_button.dart';
+import '../../../../common/widget/regular_button.dart';
 
 import '../../controllers/onboard_controller.dart';
 

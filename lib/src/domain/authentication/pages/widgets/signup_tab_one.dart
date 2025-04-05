@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rebyte/src/utils/text_styles.dart';
+import '../../../../utils/text_styles.dart';
 
-import '../../../../common/custom_text.dart';
-import '../../../../common/regular_button.dart';
+import '../../../../common/widget/custom_text.dart';
+import '../../../../common/widget/regular_button.dart';
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
 

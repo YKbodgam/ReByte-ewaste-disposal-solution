@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../common/custom_logo.dart';
-import '../../../../common/custom_text.dart';
-import '../../../../common/regular_button.dart';
+import '../../../../common/widget/custom_logo.dart';
+import '../../../../common/widget/custom_text.dart';
+import '../../../../common/widget/regular_button.dart';
 
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';

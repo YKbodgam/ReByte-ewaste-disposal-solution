@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../common/custom_text.dart';
+import '../../../../common/widget/custom_text.dart';
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
 import '../../../../utils/text_styles.dart';

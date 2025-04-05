@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import '../../../common/helper/get_token.dart';
+import '../../administration/pages/views/home_page.dart';
 
 import '../../../services/token_functions/auth_service.dart';
 import '../../../services/token_functions/hive_service.dart';
 
-import '../../administration/pages/views/home_screen.dart';
 import '../pages/views/choose_language.dart';
 import '../pages/views/onboarding_screen.dart';
 import 'user_controller.dart';
@@ -75,8 +76,8 @@ class SplashController extends GetxController
   Future<void> checkSignedIn() async {
     if (AuthService.isLoggedIn()) {
       await userController.fetchUserData();
-
-      Timer(const Duration(seconds: 2), () => Get.off(() => HomeScreen()));
+      fetchToken();
+      Timer(const Duration(seconds: 2), () => Get.off(() => HomePage()));
     }
     //
     else if (_hiveService.getLocale() != null) {

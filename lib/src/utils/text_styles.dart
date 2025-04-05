@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 
+// Headings: Space Grotesk (bold)
+
+// Subheadings: Lora (semi-bold)
+
+// Body text: Merriweather (regular)
+
+// Buttons & UI Elements: Space Grotesk (medium/semi-bold)
+
+// Quotes & Highlights: Lora (italic)
+
 class MerriweatherTextStyle {
   // Merriweather text style
 
