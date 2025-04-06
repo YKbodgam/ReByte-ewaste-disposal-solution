@@ -1,1 +1,22 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"rebyte-451705","appId":"1:497752419605:android:f81c28db6800a45935cd1c","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"rebyte-451705","configurations":{"android":"1:497752419605:android:f81c28db6800a45935cd1c","ios":"1:497752419605:ios:d64642a1c45d374b35cd1c"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "rebyte-451705",
+          "appId": "1:497752419605:android:f81c28db6800a45935cd1c",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "rebyte-451705",
+          "configurations": {
+            "android": "1:497752419605:android:f81c28db6800a45935cd1c",
+            "ios": "1:497752419605:ios:d64642a1c45d374b35cd1c"
+          }
+        }
+      }
+    }
+  }
+}

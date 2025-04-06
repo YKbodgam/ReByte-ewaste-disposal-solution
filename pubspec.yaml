@@ -1,5 +1,5 @@
 name: rebyte
-description: "A new Flutter project."
+description: An e-waste management app that helps users sell their old electronic waste to nearby recyclers.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -33,24 +33,42 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
-  firebase_core: ^3.12.0
-  hive_flutter: ^1.1.0
-  get: ^4.7.2
-  http: ^1.3.0
-  flutter_svg: ^2.0.17
-  smooth_page_indicator: ^1.2.1
-  iconsax: ^0.0.8
-  flutter_native_splash: ^2.4.5
-  pinput: ^5.0.1
-  carousel_slider: ^5.0.0
-  google_maps_flutter: ^2.11.0
-  flutter_screenutil: ^5.9.3
-  geocoding: ^3.0.0
-  image_picker: ^1.1.2
-  dotted_border: ^2.1.0
-  geolocator: ^13.0.4
-  latlong2: ^0.9.1
+
+  # 🌐 Backend & APIs
+  firebase_core: ^3.12.0       # Core Firebase integration for Flutter
+  http: ^1.3.0                 # Used for making HTTP requests
+  flutter_dotenv: ^5.0.2       # Loads environment variables from a .env file
+  jwt_decoder: ^2.0.0          # Decodes and validates JWT tokens
+  
+  # 📦 Local Storage
+  hive_flutter: ^1.1.0         # Lightweight key-value database for local storage
+  
+  # 🧭 State Management & Navigation
+  get: ^4.7.2                  # Lightweight and powerful state management and navigation
+
+  # 🌍 Maps & Location
+  google_maps_flutter: ^2.11.0 # Displays Google Maps in a Flutter app
+  geolocator: ^13.0.4          # Provides geolocation functionalities
+  geocoding: ^3.0.0            # Converts coordinates into addresses and vice versa
+  latlong2: ^0.9.1             # Latitude and longitude utilities for maps
+  
+  # 🎨 UI & Design Utilities
+  cupertino_icons: ^1.0.8      # iOS style icons
+  flutter_svg: ^2.0.17         # Renders SVG images
+  iconsax: ^0.0.8              # Icon pack used in UI
+  flutter_screenutil: ^5.9.3   # Helps with responsive UI design
+  flutter_staggered_animations: ^1.1.1 # Staggered animations for list/grid views
+  dotted_border: ^2.1.0        # Draws custom dotted borders
+  smooth_page_indicator: ^1.2.1 # Page view indicator with smooth animation
+  carousel_slider: ^5.0.0      # Creates image or content carousels
+  
+  # 📷 Media & Input
+  image_picker: ^1.1.2         # Picks images from gallery or camera
+  pinput: ^5.0.1               # Customizable PIN input field
+  
+  # 🛠️ Dev Tools & Setup
+  flutter_native_splash: ^2.4.5 # Generates native splash screens for Android/iOS
+  intl: ^0.20.2                # Internationalization and date formatting utilities
 
 dev_dependencies:
   flutter_test:
