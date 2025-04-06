@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
+import '../../../common/helper/get_token.dart';
 import '../../../services/token_functions/auth_service.dart';
 import '../../../services/token_functions/hive_service.dart';
 
@@ -75,6 +76,7 @@ class SplashController extends GetxController
   Future<void> checkSignedIn() async {
     if (AuthService.isLoggedIn()) {
       await userController.fetchUserData();
+      fetchToken();
 
       Timer(const Duration(seconds: 2), () => Get.off(() => HomePage()));
     }

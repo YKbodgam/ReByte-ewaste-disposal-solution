@@ -17,7 +17,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
   bool _isExpanded = false;
   late TabController _tabController;
   late AnimationController _animationController;
-  late Animation<double> _animation;
+  late Animation<double> animation;
 
   // Similar products - we'll filter from the same category
   List<Map<String, dynamic>> _similarProducts = [];
@@ -145,7 +145,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
     );
 
     // Create animation
-    _animation = CurvedAnimation(
+    animation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     );

@@ -25,7 +25,7 @@ class _ExploreScreenState extends State<ExploreScreen>
   RangeValues _priceRange = const RangeValues(0, 1000);
 
   // Animation controllers
-  late Animation<double> _filterAnimation;
+  late Animation<double> filterAnimation;
   late AnimationController _filterAnimationController;
   late AnimationController _scrollAnimationController;
 
@@ -65,7 +65,7 @@ class _ExploreScreenState extends State<ExploreScreen>
       duration: const Duration(milliseconds: 300),
     );
 
-    _filterAnimation = CurvedAnimation(
+    filterAnimation = CurvedAnimation(
       parent: _filterAnimationController,
       curve: Curves.easeInOut,
     );
@@ -1139,367 +1139,6 @@ class _ExploreScreenState extends State<ExploreScreen>
     );
   }
 
-  Widget _buildFeaturedCarousel(Size screenSize) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: screenSize.width * 0.04,
-            vertical: 16,
-          ),
-          child: const Row(
-            children: [
-              Icon(Icons.star, color: Colors.amber, size: 24),
-              SizedBox(width: 8),
-              Text(
-                'Featured Products',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-        ),
-        CarouselSlider(
-          options: CarouselOptions(
-            height: screenSize.height * 0.35, // Responsive height
-            viewportFraction:
-                screenSize.width > 600
-                    ? 0.6
-                    : 0.85, // Adjust based on screen width
-            enlargeCenterPage: true,
-            enableInfiniteScroll: true,
-            autoPlay: true,
-            autoPlayInterval: const Duration(seconds: 5),
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentFeaturedIndex = index;
-              });
-            },
-          ),
-          items:
-              featuredProducts.map((product) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return GestureDetector(
-                      onTap: () {
-                        // Navigate to product detail
-                      },
-                      child: Container(
-                        width: screenSize.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 10,
-                              offset: const Offset(0, 5),
-                            ),
-                          ],
-                        ),
-                        child: Stack(
-                          children: [
-                            // Product Image
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: Image.network(
-                                product['image'],
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                                height: double.infinity,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    color: Colors.grey[300],
-                                    child: const Center(
-                                      child: Icon(
-                                        Icons.image_not_supported,
-                                        color: Colors.white,
-                                        size: 50,
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-
-                            // Gradient Overlay
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Colors.transparent,
-                                    Colors.black.withOpacity(0.7),
-                                  ],
-                                  stops: const [0.6, 1.0],
-                                ),
-                              ),
-                            ),
-
-                            // Product Info
-                            Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Container(
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 8,
-                                            vertical: 4,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: Colors.green.withOpacity(
-                                              0.8,
-                                            ),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                          ),
-                                          child: Text(
-                                            product['category'],
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 8,
-                                            vertical: 4,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: _getConditionColor(
-                                              product['condition'],
-                                            ).withOpacity(0.8),
-                                            borderRadius: BorderRadius.circular(
-                                              8,
-                                            ),
-                                          ),
-                                          child: Text(
-                                            product['condition'],
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Text(
-                                      product['name'],
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          '\$${product['discountedPrice']}',
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Text(
-                                          '\$${product['originalPrice']}',
-                                          style: const TextStyle(
-                                            color: Colors.white70,
-                                            fontSize: 14,
-                                            decoration:
-                                                TextDecoration.lineThrough,
-                                          ),
-                                        ),
-                                        const SizedBox(width: 8),
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 6,
-                                            vertical: 2,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: Colors.red,
-                                            borderRadius: BorderRadius.circular(
-                                              4,
-                                            ),
-                                          ),
-                                          child: Text(
-                                            '-${((1 - (product['discountedPrice'] / product['originalPrice'])) * 100).toInt()}%',
-                                            style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.location_on,
-                                          color: Colors.white70,
-                                          size: 16,
-                                        ),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          '${product['distance']} miles away',
-                                          style: const TextStyle(
-                                            color: Colors.white70,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-
-                            // Seller Info
-                            Positioned(
-                              top: 16,
-                              right: 16,
-                              child: Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 16,
-                                    backgroundImage: NetworkImage(
-                                      product['seller']['image'],
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                      vertical: 4,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.black.withOpacity(0.6),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          product['seller']['name'],
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        if (product['seller']['isVerified']) ...[
-                                          const SizedBox(width: 4),
-                                          const Icon(
-                                            Icons.verified,
-                                            color: Colors.blue,
-                                            size: 14,
-                                          ),
-                                        ],
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            // Stats
-                            Positioned(
-                              top: 16,
-                              left: 16,
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.6),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.remove_red_eye,
-                                      color: Colors.white70,
-                                      size: 14,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      '${product['views']}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    const Icon(
-                                      Icons.gavel,
-                                      color: Colors.white70,
-                                      size: 14,
-                                    ),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      '${product['bids']}',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                );
-              }).toList(),
-        ),
-        const SizedBox(height: 12),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children:
-              featuredProducts.asMap().entries.map((entry) {
-                return Container(
-                  width: 8.0,
-                  height: 8.0,
-                  margin: const EdgeInsets.symmetric(horizontal: 4.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color:
-                        _currentFeaturedIndex == entry.key
-                            ? Colors.green
-                            : Colors.grey[300],
-                  ),
-                );
-              }).toList(),
-        ),
-        const SizedBox(height: 24),
-      ],
-    );
-  }
-
   Widget _buildProductSection(
     String title,
     String subtitle,
@@ -1729,7 +1368,7 @@ class _ExploreScreenState extends State<ExploreScreen>
                             '\$${product['discountedPrice']}',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 18,
                               color: Colors.green,
                             ),
                           ),
@@ -1738,7 +1377,7 @@ class _ExploreScreenState extends State<ExploreScreen>
                             '\$${product['originalPrice']}',
                             style: TextStyle(
                               color: Colors.grey[600],
-                              fontSize: 12,
+                              fontSize: 14,
                               decoration: TextDecoration.lineThrough,
                             ),
                           ),
@@ -1748,68 +1387,63 @@ class _ExploreScreenState extends State<ExploreScreen>
                       Row(
                         children: [
                           // Distance
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.location_on,
-                                color: Colors.grey[600],
-                                size: 14,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                '${product['distance']} miles',
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 12,
-                                ),
-                              ),
-                              const Spacer(),
-                              Icon(
-                                Icons.remove_red_eye,
-                                size: 12,
-                                color: Colors.grey[600],
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                '${product['views']}',
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
+                          Icon(
+                            Icons.location_on,
+                            color: Colors.grey[600],
+                            size: 14,
                           ),
-                          const SizedBox(height: 8),
-
+                          const SizedBox(width: 4),
+                          Text(
+                            '${product['distance']} miles',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 12,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          Icon(
+                            Icons.remove_red_eye,
+                            size: 12,
+                            color: Colors.grey[600],
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            '${product['views']}',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
                           // Seller
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 10,
-                                backgroundImage: NetworkImage(
-                                  product['seller']['image'],
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              Expanded(
-                                child: Text(
-                                  product['seller']['name'],
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              if (product['seller']['isVerified'])
-                                Icon(
-                                  Icons.verified,
-                                  size: 14,
-                                  color: Colors.blue[700],
-                                ),
-                            ],
+                          CircleAvatar(
+                            radius: 10,
+                            backgroundImage: NetworkImage(
+                              product['seller']['image'],
+                            ),
                           ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              product['seller']['name'],
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          if (product['seller']['isVerified'])
+                            Icon(
+                              Icons.verified,
+                              size: 14,
+                              color: Colors.blue[700],
+                            ),
                         ],
                       ),
                     ],
