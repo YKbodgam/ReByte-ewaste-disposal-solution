@@ -28,12 +28,7 @@ ReByte is a revolutionary e-waste management application that connects users wit
 
 ## 📱 Screenshots
 
-![Screenshot 1](assets/images/screenshots/screenshot1.png)
-![Screenshot 2](assets/images/screenshots/screenshot2.png)
-![Screenshot 3](assets/images/screenshots/screenshot3.png)
-![Screenshot 1](assets/images/screenshots/screenshot4.png)
-![Screenshot 2](assets/images/screenshots/screenshot5.png)
-![Screenshot 3](assets/images/screenshots/screenshot6.png)
+ScreenShots will appear here
 
 ## 🚀 Getting Started
 
