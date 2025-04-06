@@ -8,10 +8,10 @@ class ProductDetailScreen extends StatefulWidget {
   final bool isLister; // To determine if the current user is the product lister
 
   const ProductDetailScreen({
-    Key? key,
+    super.key,
     required this.product,
     this.isLister = true,
-  }) : super(key: key);
+  });
 
   @override
   State<ProductDetailScreen> createState() => _ProductDetailScreenState();
@@ -23,7 +23,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
   bool _isExpanded = false;
   late TabController _tabController;
   late AnimationController _animationController;
-  late Animation<double> _animation;
+  late Animation<double> animation;
 
   // Similar products - we'll filter from the same category
   List<Map<String, dynamic>> _similarProducts = [];
@@ -185,7 +185,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
     );
 
     // Create animation
-    _animation = CurvedAnimation(
+    animation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     );
@@ -316,7 +316,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'You are about to accept the bid from ${_bidders[bidderIndex]['name']} for \Rs  ${_bidders[bidderIndex]['bid']}.',
+                  'You are about to accept the bid from ${_bidders[bidderIndex]['name']} for Rs ${_bidders[bidderIndex]['bid']}.',
                   style: const TextStyle(fontSize: 16),
                 ),
                 const SizedBox(height: 16),
@@ -378,7 +378,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'You have accepted the bid from ${_bidders[bidderIndex]['name']} for \Rs ${_bidders[bidderIndex]['bid']}.',
+                    'You have accepted the bid from ${_bidders[bidderIndex]['name']} for Rs ${_bidders[bidderIndex]['bid']}.',
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 16),
                   ),
@@ -674,7 +674,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
           Row(
             children: [
               Text(
-                '\Rs ${widget.product['discountedPrice']}',
+                'Rs ${widget.product['discountedPrice']}',
                 style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -683,7 +683,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
               ),
               const SizedBox(width: 12),
               Text(
-                '\Rs ${widget.product['originalPrice']}',
+                'Rs ${widget.product['originalPrice']}',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.grey[600],
@@ -928,7 +928,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '\Rs ${widget.product['auction']['currentBid']}',
+                    'Rs ${widget.product['auction']['currentBid']}',
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -1060,7 +1060,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                       ),
                       const Spacer(),
                       Text(
-                        '\Rs ${bidder['bid']}',
+                        'Rs ${bidder['bid']}',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -1282,7 +1282,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  '\Rs ${bidder['bid']}',
+                                  'Rs ${bidder['bid']}',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -1295,7 +1295,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                 Text(
                                   index == 0
                                       ? 'Current bid'
-                                      : '+\Rs ${(bidder['bid'] - _bidders[index - 1]['bid']).abs().toStringAsFixed(2)}',
+                                      : '+Rs ${(bidder['bid'] - _bidders[index - 1]['bid']).abs().toStringAsFixed(2)}',
                                   style: TextStyle(
                                     color:
                                         index == 0
@@ -1551,7 +1551,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                   Row(
                     children: [
                       Text(
-                        '\Rs ${product['discountedPrice']}',
+                        'Rs ${product['discountedPrice']}',
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -1560,7 +1560,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                       ),
                       const SizedBox(width: 6),
                       Text(
-                        '\RS${product['originalPrice']}',
+                        'RS${product['originalPrice']}',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[600],
@@ -1752,7 +1752,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                     ),
                                   ),
                                   Text(
-                                    '\Rs ${currentBid.toStringAsFixed(2)}',
+                                    'Rs ${currentBid.toStringAsFixed(2)}',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 16,
@@ -1778,12 +1778,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             labelText: 'Bid Amount (USD)',
-                            prefixText: '\Rs ',
+                            prefixText: 'Rs ',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
                             helperText:
-                                'Minimum bid: \Rs ${minBid.toStringAsFixed(2)}',
+                                'Minimum bid: Rs ${minBid.toStringAsFixed(2)}',
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -2017,7 +2017,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen>
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          'Please enter a bid of at least \Rs ${minBid.toStringAsFixed(2)}',
+                                          'Please enter a bid of at least Rs ${minBid.toStringAsFixed(2)}',
                                         ),
                                         backgroundColor: Colors.red,
                                       ),
