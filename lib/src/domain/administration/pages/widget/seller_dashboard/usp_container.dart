@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import '../../../../../utils/palette.dart';
 import '../../../../../utils/text_size.dart';
 import '../../../../../utils/text_styles.dart';
 import '../../../../../common/widgets/custom_text.dart';
+import '../../../../presentation/pages/views/explore_page.dart';
 
 class UspContainer extends StatelessWidget {
   const UspContainer({super.key});
@@ -35,17 +37,20 @@ class UspContainer extends StatelessWidget {
               spacing: 4.h,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(100.r)),
-                    color: Palette.kBorderSecondaryColor,
-                  ),
-                  padding: EdgeInsets.all(10.sp),
+                GestureDetector(
+                  onTap: () => Get.to(() => ExploreScreen()),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(100.r)),
+                      color: Palette.kBorderSecondaryColor,
+                    ),
+                    padding: EdgeInsets.all(10.sp),
 
-                  child: Icon(
-                    Iconsax.tree,
-                    color: Palette.kPrimaryNeutralColor,
-                    size: 30.sp,
+                    child: Icon(
+                      Iconsax.tree,
+                      color: Palette.kPrimaryNeutralColor,
+                      size: 30.sp,
+                    ),
                   ),
                 ),
                 BuildText(

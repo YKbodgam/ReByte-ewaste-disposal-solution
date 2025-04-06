@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:rebyte/src/domain/authentication/models/organisation_model.dart';
 
 import '../../../services/token_functions/auth_service.dart';
 import '../../introduction/pages/views/onboarding_final.dart';
@@ -93,7 +92,8 @@ class SignupController extends GetxController {
       }
       //
       else {
-        OrganizationModel organization = OrganizationModel(
+        UserModel organization = UserModel(
+          role: "organization",
           organizationName:
               organizationNameController.text.trim(), // Organization name
           organizationAddress:

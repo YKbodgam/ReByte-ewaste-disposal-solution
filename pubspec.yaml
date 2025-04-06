@@ -1,5 +1,5 @@
 name: rebyte
-description: "A new Flutter project."
+description: An e-waste management app that helps users sell their old electronic waste to nearby recyclers.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -51,6 +51,8 @@ dependencies:
   dotted_border: ^2.1.0
   geolocator: ^13.0.4
   latlong2: ^0.9.1
+  intl: ^0.20.2
+  flutter_staggered_animations: ^1.1.1
 
 dev_dependencies:
   flutter_test:
