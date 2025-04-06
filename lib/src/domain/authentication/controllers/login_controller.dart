@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:rebyte/src/common/helper/get_token.dart';
 
 import '../../../config/snackbar.dart';
 import '../../../services/token_functions/auth_service.dart';
@@ -33,6 +34,7 @@ class LoginController extends GetxController {
 
         if (isSucess) {
           await userController.fetchUserData();
+          fetchToken();
 
           // Navigate to the home screen
           SnackWidget.showSnackbar(Get.context!, 'Login Successful !');
