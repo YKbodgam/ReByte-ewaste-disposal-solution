@@ -21,10 +21,10 @@ ReByte is a revolutionary e-waste management application that connects users wit
 - **Backend**: Firebase
 - **State Management**: GetX
 - **Local Storage**: Hive
-- **Maps & Location**: Google Maps, Geolocator
+- **Maps & Location**: Geolocator
 - **UI Components**: Custom widgets with animations
-- **Authentication**: Firebase Auth
-- **Cloud Storage**: Firebase Storage
+- **Authentication**: Custom Backend( Node.js + Express with JWT Authorization)
+- **Cloud Storage**: MongoDB Storage + Redis
 
 ## 📱 Screenshots
 
@@ -88,8 +88,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-- [Yahya Bodgam - FrontEnd Development]
-- [Utsav Patel - Backend Development]
+- Yahya Bodgam
+- Utsav Patel
+- Shyam Modi
+- Aadi Patel
 
 ## 🙏 Acknowledgments
 
