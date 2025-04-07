@@ -24,6 +24,7 @@ ReByte is a revolutionary e-waste management application that connects users wit
 - **Maps & Location**: Geolocator
 - **UI Components**: Custom widgets with animations
 - **Authentication**: Custom Backend( Node.js + Express with JWT Authorization)
+   Backend Repo - https://github.com/Utsav-patell/googlesolutions_backend_public
 - **Cloud Storage**: MongoDB Storage + Redis
 
 ## 📱 Screenshots
@@ -64,8 +65,7 @@ flutter run
 
 1. Create a Firebase project and add your configuration to `.env`
 2. Enable Google Maps API and add your API key
-3. Set up Firebase Authentication
-4. Configure Firebase Storage for image uploads
+3. See steps for backend on the Repositoray link provided for backend.
 
 ## 📦 Dependencies
 
@@ -96,7 +96,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - Flutter team for the amazing framework
-- Firebase for backend services
 - All open-source contributors whose packages we've used
 
 ## 📞 Contact
