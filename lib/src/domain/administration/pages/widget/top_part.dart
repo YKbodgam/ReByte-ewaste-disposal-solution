@@ -2,8 +2,9 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rebyte/src/domain/authentication/models/user_model.dart';
 
-import '../views/profile_page.dart';
+import '../../../personification/pages/views/profile_page.dart';
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
 import '../../../../utils/text_styles.dart';
@@ -12,7 +13,7 @@ import '../../../../common/widgets/custom_text.dart';
 class TopPart extends StatelessWidget {
   const TopPart({super.key, required this.user});
 
-  final dynamic user;
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {

@@ -2,15 +2,17 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rebyte/src/domain/personification/pages/widgets/top_container.dart';
 
-import 'my_ewaste_listings.dart';
-import '../widget/top_container.dart';
+import '../../../segregation/pages/views/my_ewaste_listings.dart';
+
 import '../../../introduction/pages/views/choose_language.dart';
 
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
 import '../../../../utils/text_styles.dart';
 import '../../../../common/widgets/custom_text.dart';
+import '../widgets/profile_tile.dart';
 
 class ProfilePage extends StatelessWidget {
   final dynamic user;
@@ -68,7 +70,7 @@ class ProfilePage extends StatelessWidget {
                   name: 'Your Listings',
                   onpress: () {
                     Get.to(
-                      () => MyEwasteListings(),
+                      () => MyEwasteListings(type: 'available'),
                       transition: Transition.rightToLeft,
                     );
                   },
@@ -78,7 +80,12 @@ class ProfilePage extends StatelessWidget {
                   size: size,
                   icon: Iconsax.truck_fast3,
                   name: 'Pick Up Requests',
-                  onpress: () {},
+                  onpress: () {
+                    Get.to(
+                      () => MyEwasteListings(type: 'claimed'),
+                      transition: Transition.rightToLeft,
+                    );
+                  },
                 ),
                 ProfileTile(
                   size: size,
@@ -156,70 +163,6 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class ProfileTile extends StatelessWidget {
-  final IconData icon;
-  final String name;
-  final Function onpress;
-
-  const ProfileTile({
-    super.key,
-    required this.size,
-    required this.icon,
-    required this.name,
-    required this.onpress,
-  });
-
-  final Size size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: size.height * 0.01,
-        horizontal: size.width * 0.02,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: () => onpress(),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(icon, size: 24),
-                  SizedBox(width: size.width * 0.03),
-                  BuildText(
-                    text: name,
-                    fontSize: FontSizes.mediumTextSize(context),
-                    textStyle: LoraTextStyle.appTextStyleMedium,
-                  ),
-                  Spacer(),
-                  Container(
-                    padding: EdgeInsets.all(size.width * 0.02),
-                    decoration: BoxDecoration(
-                      color:
-                          name == 'Log Out'
-                              ? Colors.red.withAlpha(100)
-                              : Palette.kPrimaryLightColor,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Icon(
-                      size: 20,
-                      Iconsax.arrow_right_3,
-                      color: Palette.kPrimaryDarkColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

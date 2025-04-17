@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rebyte/src/domain/authentication/models/user_model.dart';
 
 import '../../../../utils/palette.dart';
 import '../../../../utils/text_size.dart';
@@ -7,7 +8,7 @@ import '../../../../utils/text_styles.dart';
 import '../../../../common/widgets/custom_text.dart';
 
 class TopContainer extends StatelessWidget {
-  final dynamic userDetail;
+  final UserModel userDetail;
 
   const TopContainer({required this.userDetail, super.key});
 

@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:rebyte/src/config/snackbar.dart';
 
 import '../../common/helper/app_logger.dart';
 import '../../common/helper/get_token.dart';
@@ -73,6 +75,103 @@ class EWasteService {
       }
     } catch (e) {
       AppLogger.error("Error in fetchUserListingsRaw: $e");
+      rethrow;
+    }
+  }
+
+  static Future<List<dynamic>> fetchAllListings({
+    int page = 1,
+    int limit = 10,
+    String? sort,
+    List<String>? category,
+    double? minPrice,
+    double? maxPrice,
+    String? listingType,
+    double? lat,
+    double? long,
+    double? radius,
+    String? id,
+  }) async {
+    try {
+      final uri = Uri.parse('$baseUrl/all-listings');
+
+      final body = {
+        "page": page,
+        "limit": limit,
+        if (sort != null) "sort": sort,
+        if (category != null && category.isNotEmpty) "category": category,
+        if (minPrice != null) "minPrice": minPrice,
+        if (maxPrice != null) "maxPrice": maxPrice,
+        if (listingType != null) "listingType": listingType,
+        if (id != null) "id": id,
+        if (lat != null && long != null && radius != null) ...{
+          "lat": lat,
+          "long": long,
+          "radius": radius,
+        },
+      };
+
+      final res = await http.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(body),
+      );
+
+      if (res.statusCode == 200) {
+        final data = jsonDecode(res.body);
+        return data['listings'];
+      } else {
+        AppLogger.error("Failed to fetch all listings: ${res.body}");
+        throw Exception("Failed to fetch listings: ${res.statusCode}");
+      }
+    } catch (e) {
+      AppLogger.error("Error in fetchAllListings: $e");
+      rethrow;
+    }
+  }
+
+  static Future<void> approveOrRejectRequest({
+    required String listingId,
+    required String organizationId,
+    required String action,
+  }) async {
+    try {
+      final uri = Uri.parse('$baseUrl/$listingId/requests');
+
+      final body = jsonEncode({
+        "organizationId": organizationId,
+        "action": action,
+      });
+
+      final res = await http.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: body,
+      );
+
+      if (res.statusCode == 200) {
+        final data = jsonDecode(res.body);
+        AppLogger.customLog(
+          "Request processed successfully: ${data['message']}",
+        );
+        SnackWidget.showSnackbar(
+          Get.context!,
+          data["message"],
+          onPressed: () {},
+        );
+        AppLogger.customLog("Success: ${data['message']}");
+      } else {
+        AppLogger.error("Failed to process request: ${res.body}");
+        throw Exception("Failed to process request: ${res.statusCode}");
+      }
+    } catch (e) {
+      AppLogger.error("Error in approveOrRejectRequest: $e");
       rethrow;
     }
   }

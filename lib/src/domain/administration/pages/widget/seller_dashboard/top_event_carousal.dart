@@ -31,6 +31,15 @@ class TopCarousal extends StatelessWidget {
                 ),
                 CarouselItemContainer(
                   descriptionTxtClr: Palette.kBorderPrimaryColor,
+                  bgColor: Palette.kSecondaryBackgroundColor,
+                  buttonTxt: "Explore Now",
+                  buttonBgColor: Palette.kBorderPrimaryColor,
+                  buttonTxtClr: Palette.kPrimaryNeutralColor,
+                  description:
+                      "See what other's are selling?\nExplore now the deals around you!\n",
+                ),
+                CarouselItemContainer(
+                  descriptionTxtClr: Palette.kBorderPrimaryColor,
                   bgColor: Palette.kPrimaryBackgroundColor,
                   buttonTxt: "Register Now",
                   buttonBgColor: Palette.kBorderPrimaryColor,
